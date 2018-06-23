@@ -35,4 +35,13 @@ async def joke():
     time.sleep(1)
     await client.say(linecache.getline('punchlines.txt', jokenum))
 
+@client.command(pass_context=True)
+async def play(ctx, url):
+    author = ctx.message.author
+    voice_channel = author.voice_channel
+    Bot = await client.join_voice_channel(voice_channel)
+
+    player = await Bot.create_ytdl_player(url)
+    player.start()
+
 client.run(TOKEN)
