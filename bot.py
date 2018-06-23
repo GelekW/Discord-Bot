@@ -13,15 +13,18 @@ client = commands.Bot(command_prefix = '!')
 async def on_ready():
     print('beep boop bop')
 
-@client.event
-async def goodmorning(cxt):
-    now = datetime.datetime.now()
-    if now.hour == 8:
-        await client.send_message(cxt, "Good morning!")
-
 @client.command()
 async def imaqtpie():
     await client.say('Doot diddly donger cuckerino... HAHA!')
+
+@client.command(pass_context = True)
+async def clear(ctx, amount = 100):
+    channel = ctx.message.channel
+    messages = []
+    async for message in client.logs_from(channel, limit = 100):
+        messages.append(message)
+    await client.delete_messages(messages)
+    await client.say('Messages deleted. beep boop bop')
 
 @client.command()
 async def joke():
