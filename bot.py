@@ -5,7 +5,7 @@ import time
 import linecache
 from discord.ext import commands
 
-TOKEN = 'NDU3NzA5MTExNjEwNTcyODEw.DgeZrw.DLKKmDtoFBYYVjVgMJ1diGexV5k'
+TOKEN = ''
 
 client = commands.Bot(command_prefix = '!')
 
@@ -18,7 +18,7 @@ async def imaqtpie():
     await client.say('Doot diddly donger cuckerino... HAHA!')
 
 @client.command(pass_context = True)
-async def clear(ctx, amount = 100):
+async def clear(ctx):
     channel = ctx.message.channel
     messages = []
     async for message in client.logs_from(channel, limit = 100):
